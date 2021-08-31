@@ -1,3 +1,5 @@
+import Cell from "./cell.js";
+
 export default class Board {
     constructor({selector, size}) {
         this.size = size;
@@ -18,5 +20,16 @@ export default class Board {
             this.element.style.width = size;
             this.element.style.height = size;
         }
+
+        this.cells = Array.from({length: 64}, (_, index) => {
+            const rank = Math.floor(index / 8);
+            const file = index % 8;
+            const cell = new Cell({
+                rank,
+                file,
+            });
+            this.element.appendChild(cell.element);
+            return cell;
+        });
     }
 }
