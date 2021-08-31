@@ -25,8 +25,11 @@ export default class Board {
 
         this.cells = Array.from({length: 64}, (_, index) => {
             const rank = 8 - Math.floor(index / 8);
-            const file = files[index % 8];
+            const fileNum = index % 8;
+            const file = files[fileNum];
+            const isOdd = (rank % 2 === fileNum % 2)
             const cell = new Cell({
+                isOdd,
                 rank,
                 file,
             });
