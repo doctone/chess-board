@@ -1,5 +1,7 @@
 import Cell from "./cell.js";
 
+const files = ['A','B','C','D','E','F','G','H'];
+
 export default class Board {
     constructor({selector, size}) {
         this.size = size;
@@ -22,8 +24,8 @@ export default class Board {
         }
 
         this.cells = Array.from({length: 64}, (_, index) => {
-            const rank = Math.floor(index / 8);
-            const file = index % 8;
+            const rank = Math.ceil(index / 8);
+            const file = files[index % 8];
             const cell = new Cell({
                 rank,
                 file,

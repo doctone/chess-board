@@ -11,4 +11,11 @@ body {
 }
 .board {
     border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.cell {
+    background: green;
 }
