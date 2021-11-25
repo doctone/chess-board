@@ -1,4 +1,6 @@
 # chess-board
-Just a chessboard whose colour will change according to the user's choice.
+Just a chessboard
 
-Not yet a functioning board.
+Each cell has appropriate data handling
+
+https://doctone.github.io/chess-board/
