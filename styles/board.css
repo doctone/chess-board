@@ -25,6 +25,11 @@ body {
     justify-content: center;
 }
 
-.pawn {
-    width: 80%
+.piece {
+    width: 150%;
+    height: 150%;
+    cursor: grab;
+    
+}
+.piece :hover {
 }

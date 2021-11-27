@@ -1,17 +1,17 @@
 const startPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 const pieces  = {
-    p : "../img/icons8-pawn-90 (1).png",
-    P : "../img/icons8-pawn-90.png",
-    K : '',
-    k : '',
-    Q : '',
-    q : '',
-    B : '',
-    b : '',
-    R : '../img/white rook.png',
-    r : '../img/blackrook.png',
-    N : '',
-    n : ''
+    P : "&#9817;",
+    p : "&#9823;",
+    k : '&#9818;',
+    K : '&#9812;',
+    q : '&#9819;',
+    Q : '&#9813;',
+    b : '&#9821;',
+    B : '&#9815;',
+    r : '&#9820;',
+    R : '&#9814;',
+    n : '&#9822;',
+    N : '&#9816;'
 }
 
 function renderPieces(FEN){
@@ -22,9 +22,9 @@ function renderPieces(FEN){
             const pieceImg = fenArr[i].split('')[s]
             if (pieces[pieceImg]){
                 const square = document.getElementById(`${i}${s}`)
-                const piece = document.createElement('img')
-                piece.setAttribute('src',pieces[pieceImg])
-                piece.setAttribute('class','pawn')
+                const piece = document.createElement('h1')
+                piece.innerHTML = pieces[pieceImg]
+                piece.setAttribute('class','piece')
                 square.appendChild(piece)
                 console.log(`found a pawn on ${i}${s}`);
             }
