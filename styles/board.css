@@ -17,5 +17,14 @@ body {
     grid-template-rows: repeat(8, 1fr);
 }
 .cell.odd {
-    background: black;
+    background: #282424;
+}
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pawn {
+    width: 80%
 }

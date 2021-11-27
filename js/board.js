@@ -9,8 +9,23 @@ export default class Board {
         this.element = document.querySelector(selector);
         this.element.classList.add('board');
         this.init();
-        console.log(this.element)
 
+    }
+
+    getCoords(index){
+        let coords = [0,0]
+        if (index < 8){
+            coords[1] = index
+            return coords.join('')
+        } else {
+            coords[1] = index%8
+            while(index >= 0){
+                index -= 8
+                coords[0] += 1
+                if (index - 8 < 0) break
+            }
+        }
+        return coords.join('')
     }
 
     init() {
@@ -28,10 +43,12 @@ export default class Board {
             const fileNum = index % 8;
             const file = files[fileNum];
             const isOdd = (rank % 2 === fileNum % 2)
+            const id = this.getCoords(index)
             const cell = new Cell({
                 isOdd,
                 rank,
                 file,
+                id,
             });
             this.element.appendChild(cell.element);
             return cell;
