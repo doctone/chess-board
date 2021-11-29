@@ -29,3 +29,7 @@ body {
     font-size: 3.5em;
     cursor: grab;
 }
+
+.cell:hover {
+    border: 2px solid yellow; 
+}
