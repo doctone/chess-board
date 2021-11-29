@@ -17,7 +17,7 @@ body {
     grid-template-rows: repeat(8, 1fr);
 }
 .cell.odd {
-    background: #282424;
+    background: #858181;
 }
 .cell {
     display: flex;
@@ -26,10 +26,6 @@ body {
 }
 
 .piece {
-    width: 150%;
-    height: 150%;
+    font-size: 3.5em;
     cursor: grab;
-    
-}
-.piece :hover {
 }
