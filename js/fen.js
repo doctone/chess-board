@@ -48,6 +48,13 @@ function renderPieces(FEN){
 
 const button = document.getElementById('fen-button')
 button.addEventListener('click', () => {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        while(cell.firstChild){
+            cell.removeChild(cell.firstChild)
+        }
+    })
+
     renderPieces('-')
     const FEN = document.getElementById('FEN').value
     renderPieces(FEN)
