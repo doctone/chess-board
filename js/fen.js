@@ -46,4 +46,9 @@ function renderPieces(FEN){
 
     }
 
-renderPieces(sicilian)
+const button = document.getElementById('fen-button')
+button.addEventListener('click', () => {
+    renderPieces('-')
+    const FEN = document.getElementById('FEN').value
+    renderPieces(FEN)
+})
