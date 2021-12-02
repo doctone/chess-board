@@ -1,6 +1,6 @@
-let fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR"
-let sicilian = "r1bqkbnr/pp2pppp/2np4/8/3NP3/8/PPP2PPP/RNBQKB1R"
-
+let fen = "rnbqkbnr/pppppppp/8/8/43P/8/PPPP1PPP/RNBQKBNR"
+let sicilian = "r1bqkbnr/pp2pppp/2np4/8/3NP3/8/PPP2PPP/RNBQKB1R w"
+let clickedSquare = undefined;
 const pieces  = {
     P : "&#9817;",
     p : "&#9823;",
@@ -58,4 +58,33 @@ button.addEventListener('click', () => {
     renderPieces('-')
     const FEN = document.getElementById('FEN').value
     renderPieces(FEN)
+})
+
+
+const cells = document.querySelectorAll('.cell')
+
+
+cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+        if (cell == clickedSquare) return null;
+        
+        if (clickedSquare){
+            // put piece down
+            console.log('putting piece down ' + clickedSquare.firstChild);
+            if (cell.firstChild){
+                cell.removeChild(cell.firstChild)
+                cell.appendChild(clickedSquare.firstChild)
+            }
+            else {
+                cell.appendChild(clickedSquare.firstChild)
+            }
+            clickedSquare = undefined;
+        }
+        else {
+            if(cell.firstChild) {
+                clickedSquare = cell;
+                console.log('picking piece up ' + clickedSquare.firstChild);
+            }
+        }
+    })
 })
