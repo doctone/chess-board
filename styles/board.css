@@ -26,7 +26,9 @@ body {
 }
 
 .clicked {
-    border: 1.5px solid yellow;
+    border: 2px solid rgb(6, 255, 131);
+    border-radius: 10%;
+    border-style: outset;
 }
 
 .piece {
