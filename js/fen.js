@@ -1,6 +1,7 @@
-let fen = "rnbqkbnr/pppppppp/8/8/43P/8/PPPP1PPP/RNBQKBNR"
-let sicilian = "r1bqkbnr/pp2pppp/2np4/8/3NP3/8/PPP2PPP/RNBQKB1R w"
+let startPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+let sicilian = "r1bqkbnr/pp2pppp/2np4/8/3NP3/8/PPP2PPP/RNBQKB1R w";
 let clickedSquare = undefined;
+const fenBox = document.getElementById('FEN');
 const pieces  = {
     P : "&#9817;",
     p : "&#9823;",
@@ -17,6 +18,8 @@ const pieces  = {
 }
 
 function renderPieces(FEN){
+    // update current fen input box
+    fenBox.value = FEN;
     // create full array
     FEN = FEN
     .split('')
@@ -71,12 +74,13 @@ cells.forEach(cell => {
         if (clickedSquare){
             // put piece down
             console.log('putting piece down ' + clickedSquare.firstChild);
+            clickedSquare.classList.remove('clicked');
             if (cell.firstChild){
-                cell.removeChild(cell.firstChild)
-                cell.appendChild(clickedSquare.firstChild)
+                cell.removeChild(cell.firstChild);
+                cell.appendChild(clickedSquare.firstChild);
             }
             else {
-                cell.appendChild(clickedSquare.firstChild)
+                cell.appendChild(clickedSquare.firstChild);
             }
             clickedSquare = undefined;
         }
@@ -84,7 +88,21 @@ cells.forEach(cell => {
             if(cell.firstChild) {
                 clickedSquare = cell;
                 console.log('picking piece up ' + clickedSquare.firstChild);
+                clickedSquare.classList.add('clicked');
             }
         }
     })
 })
+
+renderPieces(startPosition);
+
+// const name = 'Will'
+// const age = 15
+// const car = {
+//     make: "ford",
+//     age: 15,
+//     model: "fiesta",
+//     engine: engineType(),
+// }
+
+// car[make]

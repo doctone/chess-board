@@ -26,15 +26,36 @@ body {
     justify-content: center;
 }
 
+.clicked {
+    border: 1.5px solid yellow;
+}
+
 .piece {
-    font-size: 3.5em;
+    font-size: 2rem;
     cursor: grab;
 }
 
 .cell:hover {
-    border: 2px solid yellow; 
+    border: 0.5px solid yellow; 
 }
 
 .input {
-    margin-top: 15px;
+    width: 50vw;
+}
+
+input {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#FEN {
+    width: 25em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
 }
