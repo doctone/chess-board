@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
 }
 
 body {
@@ -18,7 +17,7 @@ body {
     grid-template-rows: repeat(8, 1fr);
 }
 .cell.odd {
-    background: #858181;
+    background: #85818163;
 }
 .cell {
     display: flex;
