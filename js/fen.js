@@ -1,3 +1,6 @@
+// lookup state management
+// if the value of 'this' changes, you still need to access the variables
+
 export default class Position {
     constructor() {
         this.startPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
