@@ -25,7 +25,7 @@ export default class Position {
             },
         }
         this.renderPieces(this.state.startPosition);
-        this.state.cells.forEach(cell => {cell.addEventListener('click', this.movePiece.bind(this))});
+        this.state.cells.forEach(cell => { cell.addEventListener('click', this.movePiece.bind(this)) });
         this.state.fenButton.addEventListener('click', this.fillBoard)
 
     }
@@ -49,7 +49,6 @@ export default class Position {
         this.state.fenBox.value = FEN;
         // create full array
         FEN = this.fillFenArray(FEN);
-
         // render pieces on board
         for (let i = 0; i < FEN.length; i++) {
             for (let s = 0; s < 8; s++) {
@@ -60,7 +59,11 @@ export default class Position {
                     piece.innerHTML = this.state.pieces[pieceImg]
                     piece.setAttribute('class', 'piece')
                     square.appendChild(piece)
+                    // classes for colours
+                    const colour = pieceImg === pieceImg.toUpperCase() ? 'white' : 'black';
+                    piece.setAttribute('colour', colour)
                 }
+
             }
         }
 
@@ -82,14 +85,17 @@ export default class Position {
 
     // moving piece from square to square
     movePiece(event) {
+        // make sure to select the square even if clicking the piece
         let cell = !event.target.classList.contains('piece') ? event.target : event.target.parentElement;
         // if you click on the same square twice, do nothing
         if (cell == this.state.clickedSquare) return null;
-
+        // if already clicked
         if (this.state.clickedSquare) {
             // put piece down
             console.log('putting piece down ' + this.state.clickedSquare.firstChild.innerHTML);
             if (cell.firstChild) {
+                if (cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue) return null;
+                // console.log(cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue);
                 cell.removeChild(cell.firstChild);
                 cell.appendChild(this.state.clickedSquare.firstChild);
             }
@@ -104,6 +110,5 @@ export default class Position {
                 this.state.clickedSquare = cell;
             }
         }
-    // }
     }
 }
