@@ -25,7 +25,7 @@ export default class Position {
             },
         }
         this.renderPieces(this.state.startPosition);
-        this.state.cells.forEach(cell => {cell.addEventListener('click', this.movePiece)});
+        this.state.cells.forEach(cell => {cell.addEventListener('click', this.movePiece.bind(this))});
         this.state.fenButton.addEventListener('click', this.fillBoard)
 
     }
@@ -82,31 +82,28 @@ export default class Position {
 
     // moving piece from square to square
     movePiece(event) {
-        const cell = event.target;
-        console.log(cell);
-    //     // if you click on the same square twice, do nothing
-    //     if (cell == this.state.clickedSquare) return null;
+        let cell = !event.target.classList.contains('piece') ? event.target : event.target.parentElement;
+        // if you click on the same square twice, do nothing
+        if (cell == this.state.clickedSquare) return null;
 
-    //     if (this.clickedSquare) {
-    //         // put piece down
-    //         console.log('putting piece down ' + this.clickedSquare.firstChild);
-    //         this.clickedSquare.classList.remove('clicked');
-    //         if (cell.firstChild) {
-    //             cell.removeChild(cell.firstChild);
-    //             cell.appendChild(this.clickedSquare.firstChild);
-    //         }
-    //         else {
-    //             cell.appendChild(this.clickedSquare.firstChild);
-    //         }
-    //         this.clickedSquare = undefined;
-    //     }
-    //     else {
-    //         if (cell.firstChild) {
-    //             this.clickedSquare = cell;
-    //             console.log('picking piece up ' + this.clickedSquare.firstChild);
-    //             this.clickedSquare.classList.add('clicked');
-    //         }
-    //     }
+        if (this.state.clickedSquare) {
+            // put piece down
+            console.log('putting piece down ' + this.state.clickedSquare.firstChild.innerHTML);
+            if (cell.firstChild) {
+                cell.removeChild(cell.firstChild);
+                cell.appendChild(this.state.clickedSquare.firstChild);
+            }
+            else {
+                cell.appendChild(this.state.clickedSquare.firstChild);
+            }
+            this.state.clickedSquare = undefined;
+        }
+        else {
+            if (cell.firstChild) {
+                console.log('picking piece up ' + cell.firstChild.innerHTML);
+                this.state.clickedSquare = cell;
+            }
+        }
     // }
     }
 }
