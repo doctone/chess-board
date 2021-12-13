@@ -3,26 +3,26 @@
 
 export default class Position {
     constructor() {
+        this.pieces = {
+            P: "&#9817;",
+            p: "&#9823;",
+            k: '&#9818;',
+            K: '&#9812;',
+            q: '&#9819;',
+            Q: '&#9813;',
+            b: '&#9821;',
+            B: '&#9815;',
+            r: '&#9820;',
+            R: '&#9814;',
+            n: '&#9822;',
+            N: '&#9816;'
+        };
         this.state = {
             startPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
             clickedSquare: undefined,
             fenBox: document.getElementById('FEN'),
             fenButton: document.getElementById('fen-button'),
             cells: document.querySelectorAll('.cell'),
-            pieces: {
-                P: "&#9817;",
-                p: "&#9823;",
-                k: '&#9818;',
-                K: '&#9812;',
-                q: '&#9819;',
-                Q: '&#9813;',
-                b: '&#9821;',
-                B: '&#9815;',
-                r: '&#9820;',
-                R: '&#9814;',
-                n: '&#9822;',
-                N: '&#9816;'
-            },
         }
         this.renderPieces(this.state.startPosition);
         this.state.cells.forEach(cell => { cell.addEventListener('click', this.movePiece.bind(this)) });
@@ -53,10 +53,10 @@ export default class Position {
         for (let i = 0; i < FEN.length; i++) {
             for (let s = 0; s < 8; s++) {
                 const pieceImg = FEN[i].split('')[s]
-                if (this.state.pieces[pieceImg]) {
+                if (this.pieces[pieceImg]) {
                     const square = document.getElementById(`${i}${s}`)
                     const piece = document.createElement('h1')
-                    piece.innerHTML = this.state.pieces[pieceImg]
+                    piece.innerHTML = this.pieces[pieceImg]
                     piece.setAttribute('class', 'piece')
                     square.appendChild(piece)
                     // classes for colours
@@ -94,6 +94,7 @@ export default class Position {
             // put piece down
             console.log('putting piece down ' + this.state.clickedSquare.firstChild.innerHTML);
             if (cell.firstChild) {
+                // same colors?
                 if (cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue) return null;
                 // console.log(cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue);
                 cell.removeChild(cell.firstChild);
@@ -102,12 +103,14 @@ export default class Position {
             else {
                 cell.appendChild(this.state.clickedSquare.firstChild);
             }
+            this.state.clickedSquare.classList.remove('clicked');
             this.state.clickedSquare = undefined;
         }
         else {
             if (cell.firstChild) {
                 console.log('picking piece up ' + cell.firstChild.innerHTML);
                 this.state.clickedSquare = cell;
+                cell.classList.add('clicked');
             }
         }
     }
