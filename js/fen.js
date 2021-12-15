@@ -18,15 +18,15 @@ export default class Position {
             N: '&#9816;'
         };
         this.state = {
-            startPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+            currentPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
             clickedSquare: undefined,
             fenBox: document.getElementById('FEN'),
             fenButton: document.getElementById('fen-button'),
             cells: document.querySelectorAll('.cell'),
         }
-        this.renderPieces(this.state.startPosition);
+        this.renderPieces(this.state.currentPosition);
         this.state.cells.forEach(cell => { cell.addEventListener('click', this.movePiece.bind(this)) });
-        this.state.fenButton.addEventListener('click', this.fillBoard)
+        this.state.fenButton.addEventListener('click', this.fillBoard.bind(this));
 
     }
     // Make 2d Array
@@ -80,7 +80,7 @@ export default class Position {
         })
         // finding input 
         const FEN = document.getElementById('FEN').value
-        renderPieces(FEN)
+        this.renderPieces(FEN)
     }
 
     // moving piece from square to square
