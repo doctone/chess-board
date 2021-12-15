@@ -24,13 +24,13 @@ export default class Position {
             fenButton: document.getElementById('fen-button'),
             cells: document.querySelectorAll('.cell'),
         }
-        this.renderPieces(this.state.currentPosition);
         this.state.cells.forEach(cell => { cell.addEventListener('click', this.movePiece.bind(this)) });
-        this.state.fenButton.addEventListener('click', this.fillBoard.bind(this));
-
+        this.state.fenButton.addEventListener('click', this.updateBoard.bind(this));
+        
+        this.renderPieces(this.state.currentPosition);
     }
     // Make 2d Array
-    fillFenArray(FEN) {
+    createFenArray(FEN) {
         return FEN
             .split('')
             .map(char => {
@@ -48,7 +48,7 @@ export default class Position {
         // update current fen input box
         this.state.fenBox.value = FEN;
         // create full array
-        FEN = this.fillFenArray(FEN);
+        FEN = this.createFenArray(FEN);
         // render pieces on board
         for (let i = 0; i < FEN.length; i++) {
             for (let s = 0; s < 8; s++) {
@@ -70,7 +70,7 @@ export default class Position {
     }
 
 
-    fillBoard() {
+    updateBoard() {
         // clears board
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
