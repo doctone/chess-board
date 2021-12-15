@@ -94,9 +94,8 @@ export default class Position {
             // put piece down
             console.log('putting piece down ' + this.state.clickedSquare.firstChild.innerHTML);
             if (cell.firstChild) {
-                // same colors?
+                // same colors? ignore
                 if (cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue) return null;
-                // console.log(cell.firstChild.attributes.colour.nodeValue === this.state.clickedSquare.firstChild.attributes.colour.nodeValue);
                 cell.removeChild(cell.firstChild);
                 cell.appendChild(this.state.clickedSquare.firstChild);
             }
