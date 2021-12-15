@@ -1,6 +1,4 @@
 # chess-board
-Just a chessboard
-
-Each cell has appropriate data handling
+A Chessboard written in vanilla JS
 
 https://doctone.github.io/chess-board/
