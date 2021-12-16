@@ -104,6 +104,7 @@ export default class Position {
             }
             this.state.clickedSquare.classList.remove('clicked');
             this.state.clickedSquare = undefined;
+            this.updateFEN(this.state.currentPosition);
         }
         else {
             if (cell.firstChild) {
@@ -113,4 +114,17 @@ export default class Position {
             }
         }
     }
+
+    // update the FEN on each move
+    updateFEN(FEN){
+        // create full array
+        FEN = this.createFenArray(FEN)
+        // edit full array
+        for (let i=0; i<this.state.cells.length; i++){
+            console.log(this.state.cells[i].innerHTML);
+            // if (this.pieces[this.state.cells[i].innerHTML]){
+            //     }
+            }
+        }
+        // collapse back into FEN
 }
