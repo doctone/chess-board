@@ -1,0 +1,22 @@
+{
+  "name": "chess-app",
+  "version": "1.0.0",
+  "description": "A Chessboard written in vanilla JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doctone/chess-board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doctone/chess-board/issues"
+  },
+  "homepage": "https://github.com/doctone/chess-board#readme",
+  "dependencies": {
+    "chess.js": "^0.12.0"
+  }
+}

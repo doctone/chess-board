@@ -1,6 +1,4 @@
-// lookup state management
-// if the value of 'this' changes, you still need to access the variables
-
+import Chess from "../node_modules/chess.js";
 export default class Position {
     constructor() {
         this.pieces = {
@@ -18,7 +16,9 @@ export default class Position {
             N: '&#9816;'
         };
         this.state = {
-            currentPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+            board : new Chess(
+                'r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1 b - c3 0 19'),
+            // currentPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
             clickedSquare: undefined,
             fenBox: document.getElementById('FEN'),
             fenButton: document.getElementById('fen-button'),
@@ -27,7 +27,7 @@ export default class Position {
         this.state.cells.forEach(cell => { cell.addEventListener('click', this.movePiece.bind(this)) });
         this.state.fenButton.addEventListener('click', this.updateBoard.bind(this));
         
-        this.renderPieces(this.state.currentPosition);
+        this.renderPieces(this.state.board.fen());
     }
     // Make 2d Array
     createFenArray(FEN) {
@@ -104,7 +104,7 @@ export default class Position {
             }
             this.state.clickedSquare.classList.remove('clicked');
             this.state.clickedSquare = undefined;
-            this.updateFEN(this.state.currentPosition);
+            // this.updateFEN(this.state.board.fen);
         }
         else {
             if (cell.firstChild) {

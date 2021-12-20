@@ -1,0 +1,9 @@
+to add:
+[x] move pieces
+[] legal moves for each piece
+    [] piece movement
+    [] captures
+    [] castling
+    [] en passant
+    [] checks
+[] update FEN
